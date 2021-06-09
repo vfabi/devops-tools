@@ -1,5 +1,14 @@
 # docker-image-devops-tools
 
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/vfabi/docker-image-devops-tools)
+![GitHub last commit](https://img.shields.io/github/last-commit/vfabi/docker-image-devops-tools)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+[![Generic badge](https://img.shields.io/badge/hub.docker.com-vfabi/docker_image_devops_tools-<>.svg)](https://hub.docker.com/repository/docker/vfabi/docker-image-devops-tools)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/vfabi/docker-image-devops-tools)
+![Docker Pulls](https://img.shields.io/docker/pulls/vfabi/docker-image-devops-tools)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/vfabi/docker-image-devops-tools)
+
 Docker image with DevOps tools.  
 Based on `quay.io/roboll/helmfile:helm3-v0.135.0`.
 
@@ -14,7 +23,7 @@ Contains following tools:
 
 ## Docker
 
-[![Generic badge](https://img.shields.io/badge/hub.docker.com-vfabi/docker_image_devops_tools.svg)](https://hub.docker.com/repository/docker/vfabi/docker-image-devops-tools)
+[![Generic badge](https://img.shields.io/badge/hub.docker.com-vfabi/docker_image_devops_tools-<>.svg)](https://hub.docker.com/repository/docker/vfabi/docker-image-devops-tools)
 
 ## Contributing
 
