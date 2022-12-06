@@ -14,8 +14,7 @@ Supported platforms: amd64, arm64.
 
 ## Features
 
-Contains following tools:
-
+Docker images with `<release>-all` tags contains following tools:
 - helm
 - helm plugin helm-diff
 - helm plugin helm-unittest
@@ -26,7 +25,14 @@ Contains following tools:
 - kustomize
 - kubeseal
 - aws-iam-authenticator
-- awscli
+- aws-cli
+- gcloud
+
+Docker images with `<release>-minimal` tags contains following tools:
+- helm
+- helmfile
+- kubectl
+- kustomize
 
 For the tools versions please look at [CHANGELOG.md](CHANGELOG.md)
 
@@ -37,7 +43,8 @@ For the tools versions please look at [CHANGELOG.md](CHANGELOG.md)
 ## Build
 
 ```
-docker buildx build --push --platform=linux/amd64,linux/arm64 -t vfabi/devops-tools:latest -f Dockerfile .
+docker buildx build --push --platform=linux/amd64,linux/arm64 -t vfabi/devops-tools:latest-all -f Dockerfile-all .
+docker buildx build --push --platform=linux/amd64,linux/arm64 -t vfabi/devops-tools:latest-minimal -f Dockerfile-minimal .
 ```
 
 ## Contributing

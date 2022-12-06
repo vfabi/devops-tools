@@ -11,11 +11,12 @@ ARG EKSCTL_VERSION=0.120.0
 ARG KUSTOMIZE_VERSION=4.5.6
 ARG KUBESEAL_VERSION=0.18.5
 ARG AWS_IAM_AUTHENTICATOR_VERSION=0.5.6
+ARG GCLOUD_VERSION=410.0.0
 ENV PIP_ROOT_USER_ACTION=ignore
 
 
 # COMMON
-RUN apk add --update --no-cache curl ca-certificates bash git curl jq gettext python3
+RUN apk add --update --no-cache curl ca-certificates bash git jq gettext python3
 
 # HELM
 ENV HELM_BASE_URL="https://get.helm.sh"
@@ -48,11 +49,22 @@ RUN curl -sL "https://github.com/weaveworks/eksctl/releases/download/v${EKSCTL_V
     mv /tmp/eksctl /usr/bin && \
     chmod +x /usr/bin/eksctl
 
-# AWSCLI
+# AWS-CLI
 RUN python3 -m ensurepip && \
     pip3 install --upgrade pip && \
     pip3 install awscli && \
     pip3 cache purge
+
+# GCLOUD
+RUN if [ "$TARGETARCH" = "amd64" ]; \
+    then \
+        curl -sL "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${GCLOUD_VERSION}-linux-x86_64.tar.gz" | tar xz -C /usr/bin && \
+        /usr/bin/google-cloud-sdk/install.sh --usage-reporting false --command-completion true --path-update true --quiet; \
+    elif [ "$TARGETARCH" = "arm64" ]; \
+    then \
+        curl -sL "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${GCLOUD_VERSION}-linux-arm.tar.gz" | tar xz -C /usr/bin && \
+        /usr/bin/google-cloud-sdk/install.sh --usage-reporting false --command-completion true --path-update true --quiet; \
+    fi
 
 # KUSTOMIZE
 RUN curl -sLO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_${TARGETARCH}.tar.gz && \
@@ -71,4 +83,3 @@ RUN curl -fsL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/
 
 
 WORKDIR /app
-# CMD bash
